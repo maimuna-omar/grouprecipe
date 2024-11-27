@@ -17,4 +17,4 @@ Key Features of the recipe website
 Easy-to-Follow Instructions: Recipes include detailed steps, cooking times, and serving suggestions.
 Search & Filters: Quickly find recipes by ingredient, cuisine, dietary preference, or occasion.
 Community & Tips: Share your creations, ask questions, and discover tips from fellow food enthusiasts.
-Save & Share: Bookmark your favorite recipes and share them with friends and family.
+Save & Share: Mark your preferred recipes and share them with your friends and family.
