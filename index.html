@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Website</title>
+    
+ 
+
+    <style>
+   /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Hero Section */
+.hero {
+    background-image: url('https://c8.alamy.com/comp/H8YMDB/culinary-background-for-recipe-of-christmas-baking-H8YMDB.jpg'); /* Replace with your hero image */
+    background-size: cover;
+    background-position: center;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero .search-bar {
+    margin-top: 20px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.hero .search-bar input[type="text"] {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.hero .search-bar input[type="text"]::placeholder {
+    font-style: italic;
+    color: #aaa;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 20px;
+}
+
+nav a {
+    color: #333;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #f8f9fa;
+    color: #ff6347;
+}
+
+/* Recipe Grid Section */
+.recipe-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.recipe-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.recipe-card {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recipe-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.recipe-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.recipe-card h3 {
+    font-size: 1.2rem;
+    margin: 15px;
+    color: #ff6347;
+}
+
+.recipe-card p {
+    font-size: 0.9rem;
+    margin: 10px 15px;
+    color: #555;
+}
+
+.recipe-card a {
+    text-decoration: none;
+    color: #ff6347;
+}
+
+.recipe-card a:hover {
+    text-decoration: underline;
+}
+
+/* Recipe Submission Form */
+form {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+form input, form textarea, form select, form button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+form button {
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #ff4500;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+footer a {
+    color: #ff6347;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Hero Banner with Search Bar -->
+    <div class="hero">
+        <div>
+            <h1>Recipe Collection</h1>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for recipes...">
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#baking">Baking</a>
+        <a href="#vegetarian">Vegetarian Meals</a>
+        <a href="#non-vegetarian">Non-Vegetarian Meals</a>
+        <a href="#drinks">Drinks</a>
+    </nav>
+
+    <!-- Recipe Sections -->
+    <div id="recipes-container">
+    <section class="recipe-section" id="baking">
+        <h2>Baking</h2>
+        <div class="recipe-grid">
+            <div class="recipe-card">
+                <img src="https://qembardelites.wordpress.com/wp-content/uploads/2022/05/f41027a2-a79f-4989-be16-0ffe650e709d.jpg?w=765&h=380&crop=1" alt="Banana Chiffon Cake">
+                <h3><a href="./index/index1.html">Banana Chiffon Cake</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://u-taste.com/wp-content/uploads/2024/06/7%E6%9C%884%E6%97%A5-2.00_00_01_23.Still003_%E7%BB%93%E6%9E%9C-scaled-1-576x1024.webp" alt="Cute Cow Roll Cake">
+                <h3><a href="./index/index copy.html">Cute Cow Roll Cake</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://media02.stockfood.com/largepreviews/MTg3MTU4ODU3NQ==/60373825-White-chocolate-raspberry-and-pistachio-mousse-cake.jpg" alt="Rasberry Pistachio Mousse Cake">
+                <h3><a href="./index/index copy 2.html">Rasberry Pistachio Mousse Cake</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://www.sainsburysmagazine.co.uk/media/9285/download/Jam-Sandwish-cake.jpg?v=1" alt="Cake Sandwich">
+                <h3><a href="./index/index copy 3.html">Cake Sandwich</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://chefsheilla.com/wp-content/uploads/2021/04/Soft-and-Fluffy-Matcha-Cake-4-scaled.jpg" alt="Matcha Soft Cake">
+                <h3><a href="./index/index copy 4.html">Matcha Soft Cake</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://u-taste.com/wp-content/uploads/2024/06/1%E6%9C%8820%E6%97%A5.00_00_02_16.Still001_%E7%BB%93%E6%9E%9C-scaled-1-576x1024.webp" alt="Mango Crepe Roll">
+                <h3><a href="./index/index copy 5.html">Mango Crepe Roll</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://zhangcatherine.com/wp-content/uploads/2023/02/12001200-2.jpg" alt="Strawberry Crepe Cake">
+                <h3><a href="./index/index copy 6.html">Strawberry Crepe Cake</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1V2kyDwo_VYHoQaqSOyms-SbF4CqfBBn_N2pLHlA-NKbMSABlubp2zBjRl6rLWvX2y4Xf2qrJImWT6GZKR34w4oK213uFadHF0mc5p8XwMminT6d0RYJ4Sr7Jw-EzEh9qS-AIJqg5N6mqmNaZBwg2lUeLzx_dkrRl_N6Dr5PZsNM6X44ahqlBtp3tsY4h/s1200/P2140319_Fotor.jpg" alt="Soft and Light Cheese Cake">
+                <h3><a href="./index/index copy 7.html">Soft and Light Cheese Cake</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://media.istockphoto.com/id/184858624/photo/tiramisu-with-chestnuts.jpg?s=612x612&w=0&k=20&c=FVRHhAyKp7SXKZZflH44ajEqgEXNRhGVzLIceMJrHR0=" alt="Chestnut Tiramisu">
+                <h3><a href="./index/index copy 3.html">Chestnut Tiramisu</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://grubgalore.com/wp-content/uploads/2021/11/Apple-sponge-pound-Cake.jpeg" alt="Apple Pound CaKe">
+                <h3><a href="./index/index copy 9.html">Apple Pound CaKe</a></h3>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="recipe-section" id="vegetarian">
+        <h2>Vegetarian Meals</h2>
+        <div class="recipe-grid">
+            <div class="recipe-card">
+                <img src="https://www.tamingtwins.com/wp-content/uploads/2023/05/image-32.jpeg" alt="Creamy Courgette Pasta.">
+                <h3><a href="./index/index copy 10.html">Creamy Courgette Pasta</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://images.ctfassets.net/uexfe9h31g3m/3Bo18bcgOQ2oyIUIE6S48Q/f14fec211cb9ffed94390520074d1456/Cottagepie_1024x768__4_.jpg?w=2000&h=1500&fm=webp&fit=thumb&q=100" alt="Vegetarian Cottage Pie">
+                <h3><a href="./index/index copy 11.html">Vegetarian Cottage Pie</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://www.wearesovegan.com/wp-content/uploads/2021/01/veganultimatechillirecipeh1.jpg" alt="Vegetarian Chilli ">
+                <h3><a href="./index/index copy 12.html">Vegetarian Chilli</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://images.squarespace-cdn.com/content/v1/53fc8c7ce4b0af221e1c4c06/1536148708775-GA1SK992T4QSGHE30B3L/fullsizeoutput_95b9.jpeg" alt="Vegetarian Moussaka">
+                <h3><a href="./index/index copy 13.html">Vegetarian Moussaka</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_auto,w_1500,ar_3:2/k%2FPhoto%2FRecipes%2F2019-11-recipe-mediterranean-quinoa-salad%2F2019-10-21_Kitchn89095_Mediteranean-Quinoa-Salad" alt="Quinoa Salad">
+                <h3><a href="./index/index copy 14.html">Quinoa Salad</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://www.sainsburysmagazine.co.uk/uploads/media/3200x1800/08/15528-Chestnut-mushroom-wellington.jpg?v=1-0" alt="Mushroom Wellington">
+                <h3><a href="./index/index copy 15.html">Mushroom Wellington</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://biancazapatka.com/wp-content/uploads/2020/04/asparagus-puff-pastry-bundles-appetizer.jpg" alt="Cheese & Asparagus Puffs ">
+                <h3><a href="./index/index copy 16.html">Cheese & Asparagus Puffs</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://downshiftology.com/wp-content/uploads/2023/09/Roasted-Butternut-Squash-Soup-main-500x500.jpg" alt="Butternut Squash Soup ">
+                <h3><a href="./index/index copy 17.html">Butternut Squash Soup</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://www.howtocook.recipes/wp-content/uploads/2021/05/Ratatouille-recipe.jpg" alt="Homemade Ratatouille">
+                <h3><a href="./index/index copy 18.html">Homemade Ratatouille</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://www.blondelish.com/wp-content/uploads/2018/04/Best-Vegan-Tacos-Recipe-7.jpg" alt="Vegan tacos with orange salsa">
+                <h3><a href="./index/index copy 19.html">Vegan tacos with orange salsa</a></h3>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="recipe-section" id="non-vegetarian">
+        <h2>Non-Vegetarian Meals</h2>
+        <div class="recipe-grid">
+            <div class="recipe-card">
+                <img src="https://www.allrecipes.com/thmb/dMEhwFto3RiZv7Txqq3_Hu_4-00=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/6584662-97f73a0a631b4510b074bb26de89fc74.jpg" alt="Yoghurt marinated chicken shawarma">
+                <h3><a href="./index/index copy 20.html">Yoghurt marinated chicken shawarma</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://www.spendwithpennies.com/wp-content/uploads/2022/12/1200-Easy-Homemade-Lasagna-SpendWithPennies.jpg" alt="Lasagna">
+                <h3><a href="./index/index copy 21.html">Lasagna</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://shop.momofuku.com/cdn/shop/articles/Cheesy_Pork_Noodle_Bake_4_AJB.jpg?v=1645829397" alt="Pork Noodle Casserole">
+                <h3><a href="./index/index copy 22.html">Pork Noodle Casserole</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://foodiesterminal.com/wp-content/uploads/2019/01/Instant-Pot-Indian-Goat-Curry-7-1.jpg" alt="Mutton Goat Curry">
+                <h3><a href="./index/index copy 23.html">Mutton Goat Curry</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://s23209.pcdn.co/wp-content/uploads/2016/06/RedLobsterShrimpScampiCopycatIMG_8635edit.jpg" alt="Red Lobster Shrmp">
+                <h3><a href="./index/index copy 24.html">Red Lobster Shrimp</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://i.pinimg.com/736x/61/8e/26/618e265223c372fbf5b18b3c9f3acc2e.jpg" alt="Grilled Chicked Escalope with Fresh Salsa">
+                <h3><a href="./index/index copy 25.html">Grilled Chicked Escalope with Fresh Salsa</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://i.ndtvimg.com/i/2018-03/triangle-puff-punajbi-samosa_620x350_81521548536.jpg" alt="Keem Samosa with Yogurt Dip Recipe">
+                <h3><a href="./index/index copy 26.html">Keem Samosa with Yogurt Dip Recipe</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://ministryofcurry.com/wp-content/uploads/2024/06/chicken-biryani-5.jpg" alt="Chicken Biryani">
+                <h3><a href="./index/index copy 27.html">Chicken Biryani</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://www.andy-cooks.com/cdn/shop/articles/20241113065100-andy-20cooks-20-20pork-20and-20prawn-20egg-20rolls-20recipes_771a8e9f-1615-461f-8663-b29565d61848.jpg?v=1731832922" alt="Pork and Prawn Egg Rolls">
+                <h3><a href="./index/index copy 28.html">Pork and Prawn Egg Rolls</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://www.chilipeppermadness.com/wp-content/uploads/2022/11/Barbacoa-Tacos-SQ.jpg" alt="Brisket Barbacoa Tacos">
+                <h3><a href="./index/index copy 29.html">Brisket Barbacoa Tacos</a></h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="recipe-section" id="drinks">
+        <h2>Drinks</h2>
+        <div class="recipe-grid">
+            <div class="recipe-card">
+                <img src="https://www.healthshots.com/wp-content/uploads/2020/07/banana-almond-smoothie.jpg" alt="Banana Almond Smoothie">
+                <h3><a href="./index.html">Banana Almond Smoothie</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://joyfoodsunshine.com/wp-content/uploads/2022/05/banana-avocado-smoothie-recipe-5.jpg" alt="Avacado Spinach Smoothie">
+                <h3><a href="./index/index copy 2.html">Avacado Spinach Smoothie</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://healthyideasplace.com/wp-content/uploads/2018/01/Orange-Carrot-Smoothie-3a-500x500.jpg" alt="Orange Carrot Smoothie">
+                <h3><a href="./index/index copy 3.html">Orange Carrot Smoothie</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://www.forkinthekitchen.com/wp-content/uploads/2022/08/220629.iced_.latte_.vanilla-9009.jpg" alt="Iced Vanilla Latte">
+                <h3><a href="./index/index copy 4.html">Iced Vanilla Latte</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_1:1/k%2FPhoto%2FRecipe%20Ramp%20Up%2F2022-07-Cappuccino%2FCappuccino" alt="Cappuccino">
+                <h3><a href="./index/index copy 5.html">Cappuccino</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://aromaticessence.co/wp-content/uploads/2022/05/virhin_mojito_1.jpg" alt="Virgin Mojito">
+                <h3><a href="./index/index copy 6.html">Virgin Mojito</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://www.spiritedandthensome.com/wp-content/uploads/2023/03/Cucumber-Mint-Cooler-Square-650-6266-1.jpg" alt="Cucumber Lemonade Cooler">
+                <h3><a href="./index/index copy 7.html">Cucumber Lemonade Cooler</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://theschmidtywife.com/wp-content/uploads/2022/02/Featured_Classic_Margarita-683x1024.jpg" alt="Classic Margarita">
+                <h3><a href="./index/index copy 8.html">Classic Margarita</a></h3>
+            </div>
+            <div class="recipe-card">
+                <img src="https://assets.epicurious.com/photos/63443ba259142b909ba89726/1:1/w_4248,h_4248,c_limit/WhiskeySourCocktails_RECIPE_100622_40707.jpg" alt="Whiskey Sour">
+                <h3 id="data"><a href="./index/index copy 9.html">Sour </a></h3>
+            </div>
+            
+        </div>
+    </section>
+    </div>
+    <footer>
+        <p></p>
+    </footer>
+    
+<div id="data"></div>
+    <script>
+       document.addEventListener('DOMContentLoaded', () => {
+    // Search functionality for the hero search bar
+    const searchInput = document.querySelector('.search-bar input[type="text"]');
+    
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const recipeCards = document.querySelectorAll('.recipe-card');
+    
+            recipeCards.forEach(card => {
+                const title = card.querySelector('h4').textContent.toLowerCase();
+                if (title.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    } else {
+        console.error("Search input not found!");
+    }
+    
+    // Navigation scroll-to-section functionality
+    const navLinks = document.querySelectorAll('nav a');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const sectionId = e.target.getAttribute('href').substring(1);
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+    
+    // Footer year update
+    const footer = document.querySelector('footer p');
+    if (footer) {
+        const currentYear = new Date().getFullYear();
+        footer.innerHTML = `© ${currentYear} My Recipe Website. Follow us on social media!`;
+
+    } else {
+        console.error("Footer element not found!");
+    }
+    
+    // Fetch the JSON file and dynamically display recipes
+    fetch('recipes.json')
+        .then(response =>{
+            if (!response.ok){
+                throw new Error('network response was not okey');
+            }
+            return response.json();
+        })
+        .then(data => {
+            document.getElementById("data").innerText= 
+            JSON.stringify(data);
+        })
+        .catch(error=>{
+            console.error('There was a problem with the fetch operation:',error);
+        });
+
+        
+            if (!data.recipes || !Array.isArray(data.recipes)) {
+                console.error("Invalid or missing 'recipes' data in JSON");
+                return;
+            }
+    
+            const container = document.querySelector('#recipes-container');
+            if (!container) {
+                console.error("'#recipes-container' element not found!");
+                return;
+            }
+    
+            data.recipes.forEach(recipeCategory => {
+                const categorySection = document.createElement('section');
+                categorySection.innerHTML = `<h2>${recipeCategory.category}</h2>`;
+                
+                recipeCategory.subcategories.forEach(subcategory => {
+                    const subcategoryDiv = document.createElement('div');
+                    subcategoryDiv.innerHTML = <h3>${subcategory.name}</h3>;
+    
+                    subcategory.items.forEach(recipe => {
+                        const recipeCard = document.createElement('div');
+                        recipeCard.className = 'recipe-card';
+                        recipeCard.innerHTML = `
+                            <h4>${recipe.name}</h4>
+                            <p><strong>Ingredients:</strong> ${recipe.ingredients.join(', ')}</p>
+                            <p><strong>Instructions:</strong> ${recipe.instructions.join(' ')}</p>
+                        `;
+    
+                        // Append each recipe card to the subcategory section
+                        subcategoryDiv.appendChild(recipeCard);
+                    });
+    
+                    // Append the subcategory section to the category section
+                    categorySection.appendChild(subcategoryDiv);
+                });
+    
+                // Append the category section to the container
+                container.appendChild(categorySection);
+            });
+    
+            // Add hover effect for recipe cards after they are created
+            const recipeCards = document.querySelectorAll('.recipe-card');
+            recipeCards.forEach(card => {
+                card.addEventListener('mouseover', () => {
+                    card.style.boxShadow = '0px 8px 16px rgba(0, 0, 0, 0.2)';
+                });
+    
+                card.addEventListener('mouseout', () => {
+                    card.style.boxShadow = '0px 4px 8px rgba(0, 0, 0, 0.1)';
+                });
+            });
+        })
+        .catch(error => console.error('Error fetching JSON data:', error));
+});
+
+</script>
+    
+</body>
+</html>
